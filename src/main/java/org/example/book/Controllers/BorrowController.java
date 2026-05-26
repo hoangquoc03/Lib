@@ -23,4 +23,11 @@ public class BorrowController {
 
         return borrowService.createBorrow(dto);
     }
+    @PatchMapping("/{id}/return")
+    public Borrow returnBook(
+            @PathVariable Long id
+    ) {
+
+        return borrowService.returnBook(id);
+    }
 }

@@ -7,12 +7,12 @@ import org.example.book.Models.Enum.BorrowStatus;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "borrows")
+@Table(name = "borrow_tickets")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Borrow {
+public class BorrowTicket {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +21,9 @@ public class Borrow {
     private String username;
 
     private Long bookId;
+
     private LocalDate returnDate;
+
     @Enumerated(EnumType.STRING)
     private BorrowStatus status;
 }
