@@ -1,7 +1,9 @@
 package org.example.book.Services;
 
 
+import org.example.book.Exception.ResourceNotFoundException;
 import org.example.book.Models.Dto.BookCreateDTO;
+import org.example.book.Models.Dto.BookUpdateStockDTO;
 import org.example.book.Models.Entity.Book;
 import org.example.book.Repositories.BookRepository;
 import org.springframework.stereotype.Service;
@@ -58,6 +60,17 @@ public class BookService {
                 .stock(dto.getStock())
                 .coverUrl(savedFileName)
                 .build();
+        return bookRepository.save(book);
+    }
+    public Book updateBook(Long id, BookUpdateStockDTO dto) {
+
+        Book book = bookRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Không tìm thấy sách với id: " + id)
+                );
+
+        book.setStock(dto.getStock());
+
         return bookRepository.save(book);
     }
 }
