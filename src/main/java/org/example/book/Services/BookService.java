@@ -73,4 +73,13 @@ public class BookService {
 
         return bookRepository.save(book);
     }
+    public Book getBookById(Long id) {
+
+        return bookRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "Không tìm thấy sách với id: " + id
+                        )
+                );
+    }
 }
